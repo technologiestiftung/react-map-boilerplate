@@ -33,7 +33,7 @@ const DataModel = {
   setHighlightData: action((state, payload) => {
     state.highlightData = payload;
     state.mapCenter = payload ? payload.geometry.coordinates : c.map.mapCenter;
-    state.mapZoom = payload ? [15] : c.map.mapZoom;
+    // state.mapZoom = payload ? [15] : c.map.mapZoom;
   }),
   setSelectedData: action((state, payload) => (state.selectedData = payload)),
 };
