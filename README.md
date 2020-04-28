@@ -38,10 +38,39 @@ map: {
 
 #### Sidebar: About section
 
-````
-about: {
+The about section of the app consists of a ```legend```, a ```title``` and a number of ```paragraphs``` you want to show to.
+
+##### Legend
+
+Based on the properties of each feature of your dataset you define what property should be distincted by color. Set the key ```id``` of the object ```legend``` in your config as one of the existing props in your dataset. For example:
+
+```
+// data.geojson
+{
+  "type": "FeatureCollection",
+  "features": [
+      {
+        "type": "Feature",
+        "geometry": ...
+        "properties": {
+            "some_property": 'nominal_value',
+            ...
+        }
+      }
+  ]
 }
-````
+
+// config.js
+about: {
+  legend: {
+    id: 'some_property'
+  }
+}
+```
+
+###### Title & paragraphs
+
+...
 
 
 
@@ -72,7 +101,7 @@ about: {
 ```
 
 ### about
-...
+
 
 ```
   about: {
