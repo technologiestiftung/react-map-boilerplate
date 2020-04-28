@@ -2,6 +2,8 @@
 
 > This project serves as a template to plot spatial data on a map.
 
+This template is build with React and Mapboxgl.js.
+
 ## Getting started
 
 Add a ```.env``` file with your mapbox token and style credentials in the root directory. Register at mapbox to get an access token. Add the following information:
@@ -22,7 +24,7 @@ It is necessary to define the following sections inside your ```config.js```:
 
 ## How is the config.js structured?
 
-#### Mapbox settings
+### Mapbox settings
 
 The ```map``` key sets the style, default center of map, zoom level, min zoom, max zoom and others and can be edited here.
 
@@ -36,11 +38,11 @@ map: {
 }
 ```
 
-#### Sidebar: About section
+### Sidebar: About
 
 The about section of the app consists of a ```legend```, a ```title``` and a number of ```paragraphs``` you want to show to.
 
-##### Legend
+#### Legend
 
 Based on the properties of each feature of your dataset you define what property should be distincted by color. Set the key ```id``` of the object ```legend``` in your config as one of the existing props in your dataset. For example:
 
@@ -70,66 +72,166 @@ about: {
 
 ###### Title & paragraphs
 
-...
+Set the content of title and paragraphs of the about section. Set the ```value``` of the key ```title``` to define the title of the about section. 
 
-
-
-1. Inside the **tooltip** (when hovering above an item on the map)
-2. Inside the **detail** Section of the sidebar (which provides a more default view on available data of the selected item)
-3. On the **about** section of the sidebar (which provides additional information about the project)
-
-### tooltip & detail
-- id -> Name of the key inside properties of each feature.
-- component -> React component that is rendered.
-- label -> Label that is displayed above the data.
-
-#### Available components
-- tags -> expects the data to be an **array of strings**
-- openingHours -> expects the data to be an **array of objects**. Each object should have the following keys 
-- title -> expects the data to be a **string**
-- description -> expects the data to be a **string**
-- link -> expects the data to be a **string**
+To set content for paragraphs you add an ```object``` inside the array of the key ```paragraphs``` which contains two ```keys```: ```title``` and ```content``` and fill these with your text. You can also use the markdown syntax in your paragraphs to place links or emphasize parts.
 
 ```
-  detail: [
+about: {
+  ...
+  paragraphs: [
     {
-      id: "name",
-      component: "title",
-      label: "Institution",
-    }
+      title: "Your paragraph title",
+      content: "Lorem ipsum [dolorem](https://www.google.de) est. Ut **enim** ad *minima* veniam, quis nostrum"
+    },
+    ...
   ]
+}
 ```
 
-### about
+### Sidebar: Favorites
 
+Set the content of title of the favorites section. Set the ```value``` of the key ```title``` to define the title.
 
 ```
-  about: {
-    title: "Name des Projekts hier",
-    paragraphs: [
+fav: {
+  title: 'Favorites'
+}
+```
+
+### Sidebar: Filter
+
+Define the properties of your dataset you want to be filterable and set a ```title``` for this section. The ```filter``` key expects an array of ```objects```. Each object defines one filter which helps you to show/hide datapoints with the defined property on your map. You are expected to provide an ```id```, the name of the ```component``` and a ```label``` to describe the filter. The ```id``` has to match with one of the properties of your dataset (exactly like the configuration of the legend, mentioned above). Currently the value of the key ```component``` has to be "tags". Make a title you prefer as the value of the ```label``` key.
+
+> If you want to create your own components to filter the data in a new way, feel free to do so. Have a look at ```src/components/Card/Card.js``` to see how the selection of components is implemented. With the logic with the ```switch``` statement in src/modules/Sidebar/SidebarFilter.
+
+```
+// data.geojson
+{
+  "type": "FeatureCollection",
+  "features": [
       {
-        title: "Subheadline hier",
-        content: "Lorem ipsum [dolorem](https://www.google.de) est.",
-      },
+        "type": "Feature",
+        "geometry": ...
+        "properties": {
+            "another_property": 'nominal_value',
+            ...
+        }
+      }
+  ]
+}
+
+// config.js
+filter: {
+  title: 'Filter and Search',
+  filter: [
+    {
+      id: "another_property",
+      component: "tags",
+      label: "Title of the filter here"
+    },
+    ...
+  ]
+},
+```
+
+### Tooltip (on the map)
+
+Define what properties of your data shall be displayed inside the tooltip on the map. ```tooltip``` expects an ```array``` of ```objects```. You are expected to provide an ```id```, the name of the ```component``` and a ```label``` to describe the component.
+
+Currently you can choose between ```title``` and ```description``` as a component to display your information.
+
+> Feel free to place as many components as you want in the array. In this case we display a title and description of a data point.
+
+```
+// data.geojson
+{
+  "type": "FeatureCollection",
+  "features": [
       {
-        title: "Subheadline hier",
-        content: "Lorem ipsum [dolorem](https://www.google.de) est.",
-      },
-    ]
+        "type": "Feature",
+        "geometry": ...
+        "properties": {
+            "title": 'Some title',
+            "description": 'Description here',
+            ...
+        }
+      }
+  ]
+}
+
+// config.js
+...
+tooltip: [
+  {
+    id: "name",
+    component: "title",
+    label: "Title",
   },
+  {
+    id: "description",
+    component: "description",
+    label: "Description",
+  }
+],
+...
 ```
 
+### Detail View
 
+If you click on a data point on the map a more detailed view is displayed in the sidebar. At the key ```detail``` you define what properties are visible. You are expected to provide an ```id```, the name of the ```component``` and a ```label``` to describe the component.
 
+Currently you can choose between ```title```, ```description```, ```link```, ```tags``` as a layout-component to display your information.
 
+> Feel free to implement more custom components to this section. Just make sure to import newly created components to the Card Component at ```src/components/Card/Card.js``` and add the switch conditional to make them available.
 
+```
+// data.geojson
+{
+  "type": "FeatureCollection",
+  "features": [
+      {
+        "type": "Feature",
+        "geometry": ...
+        "properties": {
+            "title": 'Some title',
+            "description": 'Description here',
+            "email": 'Email here',
+            "category": 'categorical data'
+        }
+      }
+  ]
+}
 
+// config.js
+...
+detail: [
+  {
+    id: "name",
+    component: "title",
+    label: "Institution",
+  },
+  {
+    id: "description",
+    component: "description",
+    label: "Description",
+  },
+  {
+    id: "email",
+    component: "link",
+    label: "E-Mail",
+  },
+  {
+    id: "category",
+    component: "tags",
+    label: "Category",
+  },
+  ...
+],
+...
+```
 
-Available Content types:
-
-- title
-- paragraph
-
+## Commands
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -146,11 +248,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br />
@@ -160,43 +257,3 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
