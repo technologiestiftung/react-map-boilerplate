@@ -25,7 +25,6 @@ It is necessary to define the following sections inside your ```config.js```:
 ## How is the config.js structured?
 
 ### Mapbox settings
-
 The ```map``` key sets the style, default center of map, zoom level, min zoom, max zoom and others and can be edited here.
 
 > It isn't required to change anything here to run the map.
@@ -39,11 +38,9 @@ map: {
 ```
 
 ### Sidebar: About
-
 The about section of the app consists of a ```legend```, a ```title``` and a number of ```paragraphs``` you want to show to.
 
 #### Legend
-
 Based on the properties of each feature of your dataset you define what property should be distincted by color. Set the key ```id``` of the object ```legend``` in your config as one of the existing props in your dataset. For example:
 
 ```
@@ -70,8 +67,7 @@ about: {
 }
 ```
 
-###### Title & paragraphs
-
+#### Title & paragraphs
 Set the content of title and paragraphs of the about section. Set the ```value``` of the key ```title``` to define the title of the about section. 
 
 To set content for paragraphs you add an ```object``` inside the array of the key ```paragraphs``` which contains two ```keys```: ```title``` and ```content``` and fill these with your text. You can also use the markdown syntax in your paragraphs to place links or emphasize parts.
@@ -90,7 +86,6 @@ about: {
 ```
 
 ### Sidebar: Favorites
-
 Set the content of title of the favorites section. Set the ```value``` of the key ```title``` to define the title.
 
 ```
@@ -100,7 +95,6 @@ fav: {
 ```
 
 ### Sidebar: Filter
-
 Define the properties of your dataset you want to be filterable and set a ```title``` for this section. The ```filter``` key expects an array of ```objects```. Each object defines one filter which helps you to show/hide datapoints with the defined property on your map. You are expected to provide an ```id```, the name of the ```component``` and a ```label``` to describe the filter. The ```id``` has to match with one of the properties of your dataset (exactly like the configuration of the legend, mentioned above). Currently the value of the key ```component``` has to be "tags". Make a title you prefer as the value of the ```label``` key.
 
 > If you want to create your own components to filter the data in a new way, feel free to do so. Have a look at ```src/components/Card/Card.js``` to see how the selection of components is implemented. With the logic with the ```switch``` statement in src/modules/Sidebar/SidebarFilter.
@@ -136,7 +130,6 @@ filter: {
 ```
 
 ### Tooltip (on the map)
-
 Define what properties of your data shall be displayed inside the tooltip on the map. ```tooltip``` expects an ```array``` of ```objects```. You are expected to provide an ```id```, the name of the ```component``` and a ```label``` to describe the component.
 
 Currently you can choose between ```title``` and ```description``` as a component to display your information.
@@ -178,7 +171,6 @@ tooltip: [
 ```
 
 ### Detail View
-
 If you click on a data point on the map a more detailed view is displayed in the sidebar. At the key ```detail``` you define what properties are visible. You are expected to provide an ```id```, the name of the ```component``` and a ```label``` to describe the component.
 
 Currently you can choose between ```title```, ```description```, ```link```, ```tags``` as a layout-component to display your information.
@@ -232,7 +224,6 @@ detail: [
 ```
 
 ## Commands
-
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
