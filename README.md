@@ -1,10 +1,10 @@
-# tsb-react-map-boilerplate
+# Mapbox React Filterable Map Boilerplate
 
 > This project serves as a template to plot spatial data on a map.
 
 ## Getting started
 
-Add a ```.env``` file with your mapbox token and style credentials in the root directory. Register at mapbox to get an access token.
+Add a ```.env``` file with your mapbox token and style credentials in the root directory. Register at mapbox to get an access token. Add the following information:
 
 ```
 REACT_APP_MAP_TOKEN={{MAPBOX_TOKEN}}
@@ -13,20 +13,50 @@ REACT_APP_MAP_STYLE={{MAPBOX_STYLE_URL}}
 
 ## How to setup the project
 
-Inside the root directory is a ```config.js``` located which defines *what* and *how* properties of your geojson are displayed. Further more it sets default values for setting up the map. 
+In order to get things running clone this repo to your machine and install all dependencies with ```npm i```.
+The map expects data as a ```geojson``` format. Place your data in ```public/data/``` directory. It's expected to be named as ```data.geojson```.
 
-It is required to define what data is displayed:
+Inside the root directory you find the ```config.js```. Here you are obliged to define *what* and *how* properties of your geojson are displayed.
+
+It is necessary to define the following sections inside your ```config.js```:
+
+## How is the config.js structured?
+
+#### Mapbox settings
+
+The ```map``` key sets the style, default center of map, zoom level, min zoom, max zoom and others and can be edited here.
+
+> It isn't required to change anything here to run the map.
+
+```
+map: {
+  mapCenter: [13.4124999, 52.5040961], // points towards Berlin
+  mapZoom: [10],
+  ...
+}
+```
+
+#### Sidebar: About section
+
+````
+about: {
+}
+````
+
+
+
 1. Inside the **tooltip** (when hovering above an item on the map)
 2. Inside the **detail** Section of the sidebar (which provides a more default view on available data of the selected item)
 3. On the **about** section of the sidebar (which provides additional information about the project)
 
 ### tooltip & detail
-id -> Name of the key inside properties of each feature.
-component -> React component that is rendered.
-label -> Label that is displayed above the data.
+- id -> Name of the key inside properties of each feature.
+- component -> React component that is rendered.
+- label -> Label that is displayed above the data.
 
 #### Available components
 - tags -> expects the data to be an **array of strings**
+- openingHours -> expects the data to be an **array of objects**. Each object should have the following keys 
 - title -> expects the data to be a **string**
 - description -> expects the data to be a **string**
 - link -> expects the data to be a **string**
