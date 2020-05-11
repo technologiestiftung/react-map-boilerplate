@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import React from "react";
+import React, { Fragment } from "react";
 import { useStoreState } from "easy-peasy";
 
 import c from "config";
@@ -13,10 +13,10 @@ const SidebarFilter = (p) => {
   const { title, filter } = data;
   const filterState = useStoreState((state) => state.filter);
   return (
-    <>
+    <Fragment>
       <SidebarTitle>{title}</SidebarTitle>
       {filterState && <Tags filterValues={filter} filter={filterState} />}
-    </>
+    </Fragment>
   );
 };
 

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
-import React, {useEffect} from 'react';
+import React, {useEffect, Fragment} from 'react';
 import { useStoreState } from 'easy-peasy';
 
 import CardTitle from 'components/Card/CardTitle';
@@ -10,7 +10,7 @@ export default p => {
   const { data } = p;
   const categories = useStoreState(state => state.categories);
   return (
-    <>
+    <Fragment>
       <CardTitle>Legende:</CardTitle>
       {categories && (
         <div
@@ -25,6 +25,6 @@ export default p => {
           ))}
         </div>
       )}
-    </>
+    </Fragment>
   )
 }

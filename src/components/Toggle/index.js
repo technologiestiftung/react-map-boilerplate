@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx, Button } from "theme-ui";
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import FavIcon from "@material-ui/icons/FavoriteBorder";
 import UnFavIcon from "@material-ui/icons/Favorite";
 
-const Icon = (isFaved) => <>{isFaved ? <UnFavIcon /> : <FavIcon />}</>;
+const Icon = (isFaved) => <Fragment>{isFaved ? <UnFavIcon /> : <FavIcon />}</Fragment>;
 
 export default (p) => {
   const { onToggle, type, autoId, isFaved } = p;

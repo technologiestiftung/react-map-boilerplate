@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import c from "config";
-import React from "react";
+import React, { Fragment } from "react";
 import { useStoreActions } from 'easy-peasy';
 
 import CardTitle from "./CardTitle";
@@ -17,26 +17,26 @@ export default (p) => {
   const {autoid, isFaved} = properties;
   const setFav = useStoreActions((a) => a.setFav);
   return (
-    <>
+    <Fragment>
       {data && (
-        <>
+        <Fragment>
           {c.detail.map((block, i) => {
             switch (block.component) {
               case "title":
                 return (
-                  <>
+                  <Fragment>
                     <CardTitle key={`card-title-key-${i}`} size="responsive">
                       {properties[block.id]}
                     </CardTitle>
-                    <>
+                    <Fragment>
                       <Toggle
                         isFaved={isFaved}
                         autoId={autoid}
                         onToggle={setFav}
                         type="detail"
                       />
-                    </>
-                  </>
+                    </Fragment>
+                  </Fragment>
                 );
               case "description":
                 return (
@@ -69,8 +69,8 @@ export default (p) => {
                 return null;
             }
           })}
-        </>
+        </Fragment>
       )}
-    </>
+    </Fragment>
   );
 };

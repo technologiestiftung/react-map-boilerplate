@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import React from "react";
+import React, { Fragment } from "react";
 
 import c from "config";
 
@@ -12,7 +12,7 @@ const SidebarFav = (p) => {
   const fav = c.fav;
   const { title } = fav;
   return (
-    <>
+    <Fragment>
       <SidebarTitle>{title}</SidebarTitle>
       {data &&
         data.features
@@ -20,7 +20,7 @@ const SidebarFav = (p) => {
           .map((d, i) => {
             return <CardCompact key={`item-${i}`} data={d} />;
           })}
-    </>
+    </Fragment>
   );
 };
 

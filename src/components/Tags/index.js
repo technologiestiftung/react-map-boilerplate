@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Flex } from 'theme-ui';
-import React from "react";
+import React, { Fragment } from "react";
 
 import Tag from './Tag';
 import CardTitle from 'components/Card/CardTitle';
@@ -19,14 +19,14 @@ export default p => {
     >
       { filterValues.map(({ id, label }) => {
         return (
-          <>
+          <Fragment>
             <CardTitle>{label}</CardTitle>
             { filter[id].map(value => {
               return (
                 <Tag id={id} data={value}/>
               )
             })}
-          </>
+          </Fragment>
         )
         })
       }
