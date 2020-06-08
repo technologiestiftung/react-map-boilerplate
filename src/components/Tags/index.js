@@ -1,35 +1,32 @@
 /** @jsx jsx */
-import { jsx, Flex } from 'theme-ui';
-import React, { Fragment } from "react";
+import { jsx, Flex } from "theme-ui";
+import { Fragment } from "react";
 
-import Tag from './Tag';
-import CardTitle from 'components/Card/CardTitle';
+import Tag from "./Tag";
+import CardTitle from "components/Card/CardTitle";
 
-export default p => {
-  const { title, filter, filterValues } = p;
+export default (p) => {
+  const { filter, filterValues } = p;
   return (
     <Flex
       sx={{
-        width: '100%',
-        flexWrap: 'wrap',
-        fontSize: '1',
-        justifyContent: 'column',
-        mb: [ '2', '4' ]
+        width: "100%",
+        flexWrap: "wrap",
+        fontSize: "1",
+        justifyContent: "column",
+        mb: ["2", "4"],
       }}
     >
-      { filterValues.map(({ id, label }) => {
+      {filterValues.map(({ id, label }) => {
         return (
           <Fragment>
             <CardTitle>{label}</CardTitle>
-            { filter[id].map(value => {
-              return (
-                <Tag id={id} data={value}/>
-              )
+            {filter[id].map((value) => {
+              return <Tag id={id} data={value} />;
             })}
           </Fragment>
-        )
-        })
-      }
+        );
+      })}
     </Flex>
-  )
-}
+  );
+};

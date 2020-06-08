@@ -1,20 +1,21 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import c from "config";
-import React, { Fragment } from "react";
-import { useStoreActions } from 'easy-peasy';
+import { Fragment } from "react";
+import { useStoreActions } from "easy-peasy";
 
 import CardTitle from "./CardTitle";
 import CardLink from "./CardLink";
 import CardTags from "./CardTags";
 import CardDescription from "./CardDescription";
-import Toggle from 'components/Toggle';
+import Toggle from "components/Toggle";
 
 export default (p) => {
   const { data } = p;
-  if (data) {}
+  if (data) {
+  }
   const { properties } = data;
-  const {autoid, isFaved} = properties;
+  const { autoid, isFaved } = properties;
   const setFav = useStoreActions((a) => a.setFav);
   return (
     <Fragment>

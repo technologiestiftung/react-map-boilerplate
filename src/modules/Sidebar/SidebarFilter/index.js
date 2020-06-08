@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { useStoreState } from "easy-peasy";
 
 import c from "config";

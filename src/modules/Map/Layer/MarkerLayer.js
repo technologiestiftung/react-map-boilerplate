@@ -1,10 +1,9 @@
 import React, { Fragment } from "react";
 import { Layer, Feature } from "react-mapbox-gl";
 import { useStoreActions, useStoreState } from "easy-peasy";
-import idx from 'idx';
-import c from 'config';
+import idx from "idx";
 
-import history from '../../../history';
+import history from "../../../history";
 
 const paintPropsDefault = {
   "circle-radius": 6,
@@ -18,10 +17,10 @@ const MarkerLayer = (p) => {
   const { data } = p;
   const setTooltipPos = useStoreActions((actions) => actions.setTooltipPos);
   const setTooltipData = useStoreActions((actions) => actions.setTooltipData);
-  const setHighlightData = useStoreActions(a => a.setHighlightData);
-  const highlightData = useStoreState(a => a.highlightData);
+  const setHighlightData = useStoreActions((a) => a.setHighlightData);
+  const highlightData = useStoreState((a) => a.highlightData);
   const paintProps = getPaintProps(highlightData);
-  const legendType = c.about.legend.id;
+  // const legendType = c.about.legend.id;
 
   const handleMouseEnter = (evt, { properties = {} }) => {
     evt.map.getCanvas().style.cursor = "pointer";
@@ -29,26 +28,23 @@ const MarkerLayer = (p) => {
   };
 
   function getPaintProps(highlightData) {
-    const itemId = idx(highlightData, _ => _.properties.autoid) || '';
-    const activeExpr = ['case', ['==', ['string', ['get', 'autoid']], itemId], 12, 6] || '';
-    const markerColors = c.map.marker.color;
+    const itemId = idx(highlightData, (_) => _.properties.autoid) || "";
+    const activeExpr =
+      ["case", ["==", ["string", ["get", "autoid"]], itemId], 12, 6] || "";
+    // const markerColors = c.map.marker.color;
 
     return {
-      'circle-radius': [
-        'interpolate', ['linear'], ['zoom'],
-        8, activeExpr,
+      "circle-radius": ["interpolate", ["linear"], ["zoom"], 8, activeExpr],
+      "circle-color": ["get", "color"],
+      "circle-stroke-width": [
+        "case",
+        ["==", ["string", ["get", "autoid"]], itemId],
+        12,
+        4,
       ],
-      'circle-color': 
-        ['get', 'color']
-      ,
-      'circle-stroke-width': [
-        'case',
-        ['==', ['string', ['get', 'autoid']], itemId], 12,
-        4
-      ],
-      'circle-stroke-color': 'white'
+      "circle-stroke-color": "white",
     };
-  };
+  }
 
   const handleMouseLeave = (evt) => {
     evt.map.getCanvas().style.cursor = "";
@@ -91,7 +87,7 @@ const MarkerLayer = (p) => {
         paint={paintPropsDefault}
         onMouseMove={(evt) => handleMouseMove(evt)}
       >
-        { data.features.map((feat, i) => renderFeat(feat, i)) }
+        {data.features.map((feat, i) => renderFeat(feat, i))}
         {/* {data.features.filter(d => !d.properties.filtered).map(feat => renderFeat(feat))} */}
       </Layer>
       <Layer
@@ -101,7 +97,9 @@ const MarkerLayer = (p) => {
         onMouseMove={(evt) => handleMouseMove(evt)}
       >
         {/* { data.features.map((feat, i) => renderFeat(feat, i)) } */}
-        {data.features.filter(d => !d.properties.filtered).map(feat => renderFeat(feat))}
+        {data.features
+          .filter((d) => !d.properties.filtered)
+          .map((feat) => renderFeat(feat))}
       </Layer>
     </Fragment>
   );

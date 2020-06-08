@@ -1,4 +1,4 @@
-import { action, thunk, computed, actionOn } from "easy-peasy";
+import { action, thunk, computed } from "easy-peasy";
 import { id } from "utils";
 import c from "config";
 
@@ -21,7 +21,7 @@ const DataModel = {
     try {
       const response = await fetch("/data/data.geojson");
       const data = await response.json();
-      data.features.map((feat) => {
+      data.features.forEach((feat) => {
         feat.properties.autoid = id();
         feat.properties.isFaved = false;
       });

@@ -1,26 +1,28 @@
 /** @jsx jsx */
 import { jsx, Button } from "theme-ui";
-import React, { useState, Fragment } from "react";
+import { Fragment } from "react";
 import FavIcon from "@material-ui/icons/FavoriteBorder";
 import UnFavIcon from "@material-ui/icons/Favorite";
 
-const Icon = (isFaved) => <Fragment>{isFaved ? <UnFavIcon /> : <FavIcon />}</Fragment>;
+const Icon = (isFaved) => (
+  <Fragment>{isFaved ? <UnFavIcon /> : <FavIcon />}</Fragment>
+);
 
 export default (p) => {
   const { onToggle, type, autoId, isFaved } = p;
   const content = isFaved ? "Aus Favoriten entfernen" : "Zu Favoriten";
-  const isDetail = type == "detail";
+  const isDetail = type === "detail";
 
   return (
     <Button
       sx={{
         position: isDetail ? "block" : "absolute",
         background: "none",
-        display: 'flex',
-        alignItems: 'baseline',
+        display: "flex",
+        alignItems: "baseline",
         color: "background",
         right: "0px",
-        cursor: 'pointer',
+        cursor: "pointer",
         p: "0",
         mb: "10px",
         "&:focus": {
