@@ -22,13 +22,13 @@ const StyledWrapper = styled(Box)`
 
 const AppWrapper = () => {
   const isLoading = useStoreState((state) => state.isLoading);
-  const data = useStoreState((state) => state.data);
+  // const data = useStoreState((state) => state.data);
   const filteredData = useStoreState((state) => state.filteredData);
   const mapCenter = useStoreState((state) => state.mapCenter);
   const mapZoom = useStoreState((state) => state.mapZoom);
   const style = process.env.REACT_APP_MAP_STYLE;
 
-  console.log(filteredData)
+  console.log(filteredData);
 
   return (
     <ThemeProvider theme={Theme}>
