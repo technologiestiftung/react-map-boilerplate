@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink, withRouter, matchPath } from "react-router-dom";
-import { useStoreActions } from 'easy-peasy';
+import { useStoreActions } from "easy-peasy";
 
 import ListIcon from "@material-ui/icons/List";
 import InfoIcon from "@material-ui/icons/InfoOutlined";
@@ -15,7 +15,7 @@ const NavWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  box-shadow: 0 2px 40px 0 rgba(30,55,145,0.15);
+  box-shadow: 0 2px 40px 0 rgba(30, 55, 145, 0.15);
   flex-grow: 0;
   position: absolute;
   top: 15px;
@@ -48,7 +48,7 @@ const navConfig = [
 const Nav = (p) => {
   const { location } = p;
   const { pathname } = location;
-  const setHighlightData = useStoreActions(a => a.setHighlightData);
+  const setHighlightData = useStoreActions((a) => a.setHighlightData);
 
   const isNavOpen =
     matchPath(pathname, {

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export default styled.div`
-  font-family: 'Clan Bold';
+  font-family: "Clan Bold";
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 25px;
