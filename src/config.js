@@ -1,14 +1,13 @@
 export default {
-  socialTags: {
-  },
+  socialTags: {},
   map: {
     mapCenter: [13.4124999, 52.5040961],
     mapZoom: [10],
     marker: {
       color: {
-        selected: 'green',
-        default: 'black',
-      }
+        selected: "green",
+        default: "black",
+      },
     },
     config: {
       minZoom: 6,
@@ -25,37 +24,39 @@ export default {
   },
   about: {
     legend: {
-      id: 'art_angebot'
+      id: "art_angebot",
     },
     title: "Name des Projekts hier",
     paragraphs: [
       {
         title: "Subheadline hier",
-        content: "Lorem ipsum [dolorem](https://www.google.de) est. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+        content:
+          "Lorem ipsum [dolorem](https://www.google.de) est. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
       },
       {
         title: "Subheadline hier",
-        content: "Lorem ipsum [dolorem](https://www.google.de) est. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+        content:
+          "Lorem ipsum [dolorem](https://www.google.de) est. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
       },
-    ]
+    ],
   },
   fav: {
-    title: 'Favoriten'
+    title: "Favoriten",
   },
   filter: {
-    title: 'Filter und Suche',
+    title: "Filter und Suche",
     filter: [
       {
         id: "zielgruppe_themenspezifisch",
         component: "tags",
-        label: "Zielgruppe Themenspezifisch"
+        label: "Zielgruppe Themenspezifisch",
       },
       {
         id: "angebote",
         component: "tags",
-        label: "Angebote"
+        label: "Angebote",
       },
-    ]
+    ],
   },
   tooltip: [
     {
@@ -67,7 +68,7 @@ export default {
       id: "art_angebot",
       component: "description",
       label: "Angebot",
-    }
+    },
   ],
   detail: [
     {

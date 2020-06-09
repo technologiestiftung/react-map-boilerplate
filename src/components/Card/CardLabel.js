@@ -1,17 +1,17 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui';
+import { jsx } from "theme-ui";
 
-export default p => {
+export default (p) => {
   return (
     <div
       {...p}
       sx={{
-        fontSize: [0,1],
-        color: ['black'],
-        lineHeight: ['heading'],
-        fontFamily: 'body',
-        paddingBottom: [1,2]
+        fontSize: [0, 1],
+        color: ["black"],
+        lineHeight: ["heading"],
+        fontFamily: "body",
+        paddingBottom: [1, 2],
       }}
     ></div>
-  )
-}
+  );
+};

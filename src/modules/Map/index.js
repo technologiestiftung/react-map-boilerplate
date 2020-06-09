@@ -36,7 +36,7 @@ const Map = (p) => {
       >
         <Route
           path={["/", "/suche", "/liste", "/favoriten", "/info"]}
-          render={() => <MarkerLayer data={data}/>}
+          render={() => <MarkerLayer data={data} />}
         />
         <Tooltip />
         <LogoTile />
