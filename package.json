@@ -59,10 +59,10 @@
     ]
   },
   "devDependencies": {
-    "html-webpack-plugin": "3.2.0",
+    "html-webpack-plugin": "4.3.0",
     "husky": "4.2.5",
     "lint-staged": "10.2.9",
-    "prettier": "1.19.1"
+    "prettier": "2.0.5"
   },
   "husky": {
     "hooks": {
