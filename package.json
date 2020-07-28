@@ -5,9 +5,9 @@
   "dependencies": {
     "@material-ui/core": "4.11.0",
     "@material-ui/icons": "4.9.1",
-    "@testing-library/jest-dom": "5.11.0",
-    "@testing-library/react": "10.4.6",
-    "@testing-library/user-event": "12.0.11",
+    "@testing-library/jest-dom": "5.11.2",
+    "@testing-library/react": "10.4.7",
+    "@testing-library/user-event": "12.0.17",
     "babel-plugin-idx": "2.4.0",
     "d3": "5.16.0",
     "easy-peasy": "3.3.1",
@@ -28,7 +28,7 @@
     "styled-components": "5.1.1",
     "styled-normalize": "8.0.7",
     "theme-ui": "0.3.1",
-    "typescript": "3.9.6",
+    "typescript": "3.9.7",
     "unfetch": "4.1.0"
   },
   "scripts": {
